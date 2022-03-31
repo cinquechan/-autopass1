@@ -525,20 +525,6 @@
 	echo "</b>";
 	// Test case 18 End
 
-
-	// // 訂單滿1000折100元，折扣每月上限為300元
-	// $buy1000reduce10P_limit200_month = new Promotion(6, [
-	// 	'threshold_type'	=> "amount",
-	// 	'threshold_value'	=> 1000,
-	// 	// 'threshold_target'	=> 1,
-	// 	'promote_type'		=> "amount",
-	// 	'promote_value'		=> 100,
-	// 	'limit_type'		=> 'amount',
-	// 	'limit_unit'		=> 'month',
-	// 	'limit_value'		=> 300,
-	// ]);
-	// /*** 折扣實例 End ***/
-
 	/*** 測試End ***/
 	/*************************************/
 
