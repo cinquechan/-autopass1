@@ -447,7 +447,7 @@
 	// Test case 16 Start
 	formatOutput("----------------------------------------------------------------");
 	formatOutput("Test Case 16:");
-	formatOutput("折扣: 訂單滿1000折100元，折扣(每人)每月上限為200元<b>[user2折100元，此訂單手動設定為前一個月]</b>(\$buy1000reduce100_limit200_month)");
+	formatOutput("折扣: 訂單滿1000折100元，折扣(每人)每月上限為200元<b>[user2折100元，此訂單手動設定為兩個月前]</b>(\$buy1000reduce100_limit200_month)");
 	formatOutput("購買產品: [Product 1]*2 [Product 2]*2");
 	formatOutput("<b><u>預期訂單原價: 1400</u></b> (200*2+500*2)");
 	formatOutput("<b><u>預期折扣金額: 100</u></b> (訂單滿1000折100元)");
@@ -456,7 +456,7 @@
 	$order = $user->newOrder(16);
 	$order->addProduct($product1, 2)->addProduct($product2, 2)->addPromotion($buy1000reduce100_limit200_month);
 	$order_result = Calculator::calculateOrder($order, $user);
-	$order->overrideDate(date_create("now")->modify("-1 month"));
+	$order->overrideDate(date_create("now")->modify("-2 month"));
 	echo "<b>";
 	formatOutput("<h3>輸出結果:</h3>");
 	$order->printProducts();
