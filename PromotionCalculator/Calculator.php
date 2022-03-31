@@ -93,7 +93,6 @@ Class Calculator{
 						break;
 				}
 			}
-
 			if ($applied){
 				$discount = 0;
 				switch ($promote_detail['promote_type']) {

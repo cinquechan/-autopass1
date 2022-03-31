@@ -121,7 +121,7 @@
 	]);
 
 	// 訂單滿1000折100元，折扣每月上限為200元
-	$buy1000reduce10P_limit200_month = new Promotion(6, [
+	$buy1000reduce100_limit200_month = new Promotion(7, [
 		'threshold_type'	=> "amount",
 		'threshold_value'	=> 1000,
 		// 'threshold_target'	=> 1,
@@ -424,37 +424,17 @@
 	echo "</b>";
 	// Test case 14 End
 
-	// Test case 14 Start
-	formatOutput("----------------------------------------------------------------");
-	formatOutput("Test Case 14:");
-	formatOutput("折扣: 訂單滿1000折10%，折扣每人只能總共優惠300元<b>[user2嘗試300元額滿後再次使用折扣]</b>(\$buy1000reduce10P_limit300_user)");
-	formatOutput("購買產品: [Product 2]*2 [Product 3]*3");
-	formatOutput("<b><u>預期訂單原價: 1240</u></b> (500*2+80*3)");
-	formatOutput("<b><u>預期折扣金額: 0</u></b> (user2已於Test case 11/13使用完300額度)");
-	formatOutput("<b><u>預期實付金額: 1240</u></b> (1240-0)");
-	$user = $user2;
-	$order = $user->newOrder(14);
-	$order->addProduct($product2, 2)->addProduct($product3, 3)->addPromotion($buy1000reduce10P_limit300_user);
-	$order_result = Calculator::calculateOrder($order, $user);
-	echo "<b>";
-	formatOutput("<h3>輸出結果:</h3>");
-	$order->printProducts();
-	arrayOutput($order_result);
-	formatOutput("----------------------------------------------------------------");
-	echo "</b>";
-	// Test case 14 End
-
 	// Test case 15 Start
 	formatOutput("----------------------------------------------------------------");
 	formatOutput("Test Case 15:");
-	formatOutput("折扣: 訂單滿1000折100元，折扣(每人)每月上限為200元<b>[user2折100元，本月第一次使用]</b>(\$buy1000reduce10P_limit200_month)");
+	formatOutput("折扣: 訂單滿1000折100元，折扣(每人)每月上限為200元<b>[user2折100元，本月第一次使用]</b>(\$buy1000reduce100_limit200_month)");
 	formatOutput("購買產品: [Product 1]*5 [Product 2]*2");
 	formatOutput("<b><u>預期訂單原價: 2000</u></b> (200*5+500*2)");
 	formatOutput("<b><u>預期折扣金額: 100</u></b> (訂單滿1000折100元)");
 	formatOutput("<b><u>預期實付金額: 1900</u></b> (2000-100)");
 	$user = $user2;
 	$order = $user->newOrder(15);
-	$order->addProduct($product1, 5)->addProduct($product2, 2)->addPromotion($buy1000reduce10P_limit200_month);
+	$order->addProduct($product1, 5)->addProduct($product2, 2)->addPromotion($buy1000reduce100_limit200_month);
 	$order_result = Calculator::calculateOrder($order, $user);
 	echo "<b>";
 	formatOutput("<h3>輸出結果:</h3>");
@@ -467,14 +447,14 @@
 	// Test case 16 Start
 	formatOutput("----------------------------------------------------------------");
 	formatOutput("Test Case 16:");
-	formatOutput("折扣: 訂單滿1000折100元，折扣(每人)每月上限為200元<b>[user2折100元，此訂單手動設定為前一個月]</b>(\$buy1000reduce10P_limit200_month)");
+	formatOutput("折扣: 訂單滿1000折100元，折扣(每人)每月上限為200元<b>[user2折100元，此訂單手動設定為前一個月]</b>(\$buy1000reduce100_limit200_month)");
 	formatOutput("購買產品: [Product 1]*2 [Product 2]*2");
 	formatOutput("<b><u>預期訂單原價: 1400</u></b> (200*2+500*2)");
 	formatOutput("<b><u>預期折扣金額: 100</u></b> (訂單滿1000折100元)");
 	formatOutput("<b><u>預期實付金額: 1300</u></b> (1400-100)");
 	$user = $user2;
 	$order = $user->newOrder(16);
-	$order->addProduct($product1, 2)->addProduct($product2, 2)->addPromotion($buy1000reduce10P_limit200_month);
+	$order->addProduct($product1, 2)->addProduct($product2, 2)->addPromotion($buy1000reduce100_limit200_month);
 	$order_result = Calculator::calculateOrder($order, $user);
 	$order->overrideDate(date_create("now")->modify("-1 month"));
 	echo "<b>";
@@ -488,14 +468,14 @@
 	// Test case 17 Start
 	formatOutput("----------------------------------------------------------------");
 	formatOutput("Test Case 17:");
-	formatOutput("折扣: 訂單滿1000折100元，折扣(每人)每月上限為200元<b>[user2折100元，本月第二次使用]</b>(\$buy1000reduce10P_limit200_month)");
+	formatOutput("折扣: 訂單滿1000折100元，折扣(每人)每月上限為200元<b>[user2折100元，本月第二次使用]</b>(\$buy1000reduce100_limit200_month)");
 	formatOutput("購買產品: [Product 2]*1 [Product 4]*5");
 	formatOutput("<b><u>預期訂單原價: 1250</u></b> (500*1+150*5)");
 	formatOutput("<b><u>預期折扣金額: 100</u></b> (訂單滿1000折100元，Test case 16之訂單為上個月，不併入本月限額計算)");
 	formatOutput("<b><u>預期實付金額: 1150</u></b> (1250-100)");
 	$user = $user2;
 	$order = $user->newOrder(17);
-	$order->addProduct($product2, 1)->addProduct($product4, 5)->addPromotion($buy1000reduce10P_limit200_month);
+	$order->addProduct($product2, 1)->addProduct($product4, 5)->addPromotion($buy1000reduce100_limit200_month);
 	$order_result = Calculator::calculateOrder($order, $user);
 	echo "<b>";
 	formatOutput("<h3>輸出結果:</h3>");
@@ -508,14 +488,14 @@
 	// Test case 18 Start
 	formatOutput("----------------------------------------------------------------");
 	formatOutput("Test Case 18:");
-	formatOutput("折扣: 訂單滿1000折100元，折扣(每人)每月上限為200元<b>[user2折100元，嘗試本月第三次使用]</b>(\$buy1000reduce10P_limit200_month)");
+	formatOutput("折扣: 訂單滿1000折100元，折扣(每人)每月上限為200元<b>[user2折100元，嘗試本月第三次使用]</b>(\$buy1000reduce100_limit200_month)");
 	formatOutput("購買產品: [Product 1]*4 [Product 3]*3");
 	formatOutput("<b><u>預期訂單原價: 1040</u></b> (200*4+80*3)");
 	formatOutput("<b><u>預期折扣金額: 0</u></b> (Test case 15/17已各折扣100元一次，200元每月上限已用完)");
-	formatOutput("<b><u>預期實付金額: 1040</u></b> (1250-0)");
+	formatOutput("<b><u>預期實付金額: 1040</u></b> (1040-0)");
 	$user = $user2;
 	$order = $user->newOrder(18);
-	$order->addProduct($product1, 4)->addProduct($product3, 3)->addPromotion($buy1000reduce10P_limit200_month);
+	$order->addProduct($product1, 4)->addProduct($product3, 3)->addPromotion($buy1000reduce100_limit200_month);
 	$order_result = Calculator::calculateOrder($order, $user);
 	echo "<b>";
 	formatOutput("<h3>輸出結果:</h3>");
